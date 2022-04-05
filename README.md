@@ -6,5 +6,11 @@
 
 
 para pegar cidades
-para pegar dados de uma cidade
-para pegar icone da nuvem
+
+para pegar dados de uma cidade  https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+
+para pegar bandeira        https://www.countryflagsapi.com/
+
+para pegar icone da nuvem     https://openweathermap.org/img/w/01d.png
+
+mapa https://maps.google.com/?q=<lat>,<lng>

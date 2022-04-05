@@ -10,7 +10,7 @@ export const Header = styled.header`
   align-items: center;
 `
 
-export const Logo = styled.text`
+export const Logo = styled.span`
   color: transparent;
   font-size: 2rem;
   font-weight: bold;
