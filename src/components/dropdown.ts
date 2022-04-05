@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const DropDownContainer = styled.div`
   width: 40vw;
+  max-width: 576px;
   max-height: 70vh;
   
   display: flex;
@@ -14,9 +15,7 @@ export const DropDownContainer = styled.div`
   padding: 1.4rem;
   position: absolute;
   top: 13vh;
-  left: 30vw;
-
- 
+  left: 30%;
 
   overflow-y: auto;
 

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Header = styled.header`
   background: #BECAEA;
   width: 100vw;
+  max-width: 1440px;
   height: 15vh;
   color: white;
   display: flex;
