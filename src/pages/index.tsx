@@ -1,14 +1,11 @@
-import { KeyboardEventHandler, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { NextPage } from 'next'
 import Image from 'next/image'
 
 import { MainContainer } from '../styledComponents/main'
-import { Header, Logo, Label, Input, IconContainer, LoaderContainer } from '../styledComponents/header'
-import { DropDownContainer, DropDownItem } from '../styledComponents/dropdown'
-import { AllInfoContainer, CityContainer, MainInfoContainer, Uvi } from '../styledComponents/city'
 
-import { FiSearch,FiMapPin, FiSun } from "react-icons/fi";
-import { PuffLoader	 } from "react-spinners";
+import { AllInfoContainer, CityContainer, MainInfoContainer } from '../styledComponents/city'
+
 
 import { api } from '../services/api'
 // import styles from '../styles/Home.module.css'
@@ -16,6 +13,8 @@ import { api } from '../services/api'
 import { BaseCity } from '../interfaces/baseCity'
 import { City } from '../interfaces/city'
 import { Uv } from '../components/Uv';
+import { Header } from '../components/Header';
+import { Dropdown } from '../components/Dropdown';
 
 interface A extends HTMLDivElement{
   contains: (target: EventTarget | null) => boolean
@@ -67,68 +66,21 @@ const Home: NextPage = () => {
     setIsDropDownOpen(false);
   }
 
-  const checkIfShouldSubmit:KeyboardEventHandler<HTMLInputElement> = async(e) =>{
-    if(e.key != 'Enter') return
-    return handleSearch();
-  }
-
-  
-
   return (
     <MainContainer>
-      <Header>
-        <Logo>e.forecast</Logo>
-        <Label>
-          <IconContainer onClick={handleSearch}>
-            <FiSearch height={12} width={12}/>
-          </IconContainer>
-          <Input
-            placeholder='Search for your city'
-            onKeyDown={checkIfShouldSubmit}
-            onChange={e=>setSearchValue(e.target.value)}
-            onFocus={e=>setIsDropDownOpen(true)}
-          />
-          { isSubmiting &&
-            <LoaderContainer>
-              <PuffLoader	size={20} color="#000C2C"/>
-            </LoaderContainer>
-          }
-        </Label>
-        
-      </Header>
+      <Header
+        onSearch={handleSearch}
+        setSearchValue={setSearchValue}
+        setIsDropDownOpen={setIsDropDownOpen}
+        isSubmiting={isSubmiting}
+      />
+
       { cities.length !== 0 && isDropDownOpen &&
-        <DropDownContainer ref={dropdownRef}>
-          { cities.map((city,index)=>{
-            return(
-              <DropDownItem key={index} onClick={()=>fetchCity(city)}>
-                <div className="country-image-container">
-                  <Image 
-                    src={`https://countryflagsapi.com/svg/${city.country}`} 
-                    objectFit="cover" 
-                    width={142} 
-                    height={100} 
-                    alt={city.name} 
-                  />
-                </div>
-                <div className="country-info-container">
-                  <span className="city-name">{city.name}</span>
-                  <span className="city-area">{city.state}, {city.country}</span>
-                </div>
-                <a 
-                  className="map-icon" 
-                  href={`https://maps.google.com/?q=${city.lat},${city.lon}`} 
-                  target='_blank'
-                  rel="noreferrer"
-                >
-                  <FiMapPin/>
-                  <span>See on map</span>
-                </a>
-              </DropDownItem>
-            )
-          })
-          }
-            
-        </DropDownContainer>
+        <Dropdown
+          cities={cities}
+          getCity={fetchCity}
+          ref={dropdownRef}
+        />
       }
       
       { Object.keys(currentCity).length !== 0 &&
