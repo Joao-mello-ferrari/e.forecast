@@ -4,6 +4,8 @@ export const DropDownContainer = styled.div`
   width: 40vw;
   max-width: 576px;
   max-height: 70vh;
+
+  z-index: 1;
   
   display: flex;
   flex-direction: column;
