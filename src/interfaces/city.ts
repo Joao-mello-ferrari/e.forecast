@@ -17,6 +17,7 @@ export interface City extends BaseCity{
     visibility: number;
     wind_speed: number;
     wind_deg: number;
+    wind_gust: number;
     weather: {
       id: number;
       main: string;

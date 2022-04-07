@@ -4,6 +4,10 @@ interface UviProps{
   uvRange: number;
 }
 
+interface WindProps{
+  angle: number;
+}
+
 export const CityContainer = styled.div`
   width: 100vw;
   max-width: 1440px;
@@ -12,8 +16,8 @@ export const CityContainer = styled.div`
 `
 
 export const MainInfoContainer = styled.div`
-  width: 36vw;
-  height: 30vh;
+  width: 34rem;
+  height: 12rem;
   display: flex;
   padding: 1.4rem;
   background: #D6D6D6;
@@ -76,8 +80,8 @@ export const AllInfoContainer = styled.div`
   margin-left: 1.6rem;
 
   .base{
-    width: 100%;
-    height: 25vh;
+    width: 18rem;
+    height: 10rem;
     display: flex;
     flex-direction: column;
 
@@ -129,5 +133,107 @@ export const Uvi = styled.div<UviProps>`
     position: absolute;
     top: -0.15rem;
     left: ${props => `${props.uvRange/(100/97)}%`};
+  }
+`;
+
+export const Wind = styled.div<WindProps>`
+  .wind-container{
+    display: flex;
+  }
+
+  .info-container{
+    margin-top: 0.5rem;
+    
+    .gusts{
+      font-size: 0.8rem;
+      color: #FFFFFF;
+      display: inline-block;
+      margin-top: 0.75rem;
+    }
+  }
+
+  .wind-circle{
+    height: 5.6rem;
+    width: 5.6rem;
+    background: repeating-conic-gradient(#D6D6D6 0% 0.82%, #FFF 0.82% 1.25%);
+    border-radius: 50%;
+    
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: auto;
+    margin-right: 1.4rem;
+
+    > span{
+      position: absolute;
+      background: rgba(136,136,136,0.5);
+      padding: 0 0.1rem;
+      border-radius: 0.15rem;
+      color: #FFFFFF;
+      font-size: 0.75rem;
+    }
+
+    .n{ top: -22.5%; }
+    .e{ right: -15%; }
+    .s{ bottom: -22.5%; }
+    .w{ left: -20%; }
+    
+    .border-highlighter{
+      width: 94%;
+      height: 94%;
+      background: #D6D6D6;
+      border-radius: 50%;
+      position: absolute;
+    
+    }
+
+  }
+
+  .arrow-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .arrow-body{
+      width: 0.2rem; 
+      height: 4.6rem; 
+      background: #888888;
+      border-radius: 0 0 0.1rem 0.1rem;
+      transform: rotate(${props=>props.angle}deg);
+    }
+
+  .arrow-pointer-container{
+    position: absolute;
+    height: 2.3rem;
+    
+    transform-origin: 50% 100%;
+    transform: rotate(${props=>props.angle}deg);
+
+    .arrow-pointer{
+        width: 0; 
+        height: 0; 
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid #888888;
+        border-radius: 0 0 0.1rem 0.1rem;
+
+        position: relative;
+        top: -2px;
+    }
+  }
+  
+  .round-background{
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    background: rgba(136,136,136,0.1);
+    position: absolute;
+    top: 50%;
+    margin-top: -1.25rem;
   }
 `;

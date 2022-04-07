@@ -10,11 +10,14 @@ import { AllInfoContainer, CityContainer, MainInfoContainer } from '../styledCom
 import { api } from '../services/api'
 // import styles from '../styles/Home.module.css'
 
-import { BaseCity } from '../interfaces/baseCity'
-import { City } from '../interfaces/city'
+
 import { Uv } from '../components/Uv';
+import { Wind } from '../components/Wind'
 import { Header } from '../components/Header';
 import { Dropdown } from '../components/Dropdown';
+
+import { BaseCity } from '../interfaces/baseCity'
+import { City } from '../interfaces/city'
 
 interface A extends HTMLDivElement{
   contains: (target: EventTarget | null) => boolean
@@ -64,6 +67,7 @@ const Home: NextPage = () => {
     const response = await api.get(`/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&units=metric&appid=${process.env.NEXT_PUBLIC_API_KEY}`);
     setCurrentCity({ ...response.data, ...city });
     setIsDropDownOpen(false);
+    console.log({ ...response.data, ...city })
   }
 
   return (
@@ -110,7 +114,7 @@ const Home: NextPage = () => {
           </MainInfoContainer>
           <AllInfoContainer>
             <Uv city={currentCity}/>
-            <div style={{background: '#000000', height: '8rem'}}>asasa</div>
+            <Wind city={currentCity}/>
             <div style={{background: '#000000', height: '8rem'}}>sasas</div>
             <div style={{background: '#000000', height: '8rem'}}>as</div>
             <div style={{background: '#000000', height: '8rem'}}>asasa</div>

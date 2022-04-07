@@ -26,15 +26,4 @@ export const Dropdown = forwardRef<A,DropdownProps>(({ cities, getCity }, ref)=>
     })
     }
   </DropDownContainer>
-  
 ))
-
-// const FancyButton = React.forwardRef((props, ref) => (
-//   <button ref={ref} className="FancyButton">
-//     {props.children}
-//   </button>
-// ));
-
-// // You can now get a ref diPrePrectly to the DOM button:
-// const ref = React.createRef();
-// <FancyButton ref={ref}>Click me!</FancyButton>;
