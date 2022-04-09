@@ -9,10 +9,9 @@ interface RainProps{
 
 export const Rain = ({ city }: RainProps) =>{
   const rain = city.daily[0].rain;
-  console.log(rain)
 
   return(
-    <StyledRain className="base" fill={(rain / 5) * 100}>
+    <StyledRain className="base" fill={!!rain ? (Math.min(rain,5) / 5) * 100 : 0}>
       <span className='title'>
         <FiCloudRain/>  
         <span>Rain</span>

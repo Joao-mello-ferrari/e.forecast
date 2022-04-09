@@ -21,57 +21,73 @@ export const CityContainer = styled.div`
 
 export const MainInfoContainer = styled.div`
   width: 60rem;
-  height: 12rem;
+  height: calc(85vh - 3.2rem);
+  max-height: 780px;
   display: flex;
+  flex-direction: column;
   padding: 1.4rem;
   background: #D6D6D6;
   border-radius: 0.6rem;
 
-  .country-info-container{
+  .main-info-container{
     display: flex;
-    flex-direction: column;
-    width: 70%;
-    
-    .city-name{
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: #222222;
-      white-space: nowrap;
-    }
+    width: 100%;
+    height: 10rem;
 
-    .city-area{
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #888888;
-      white-space: nowrap;
-    }
-
-    .city-temp-range{
-      font-size: 1rem;
-      font-weight: 600;
-      margin-top: auto;
-
-      .max{
-        color: #FF7A7A;
+    .country-info-container{
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      
+      .city-name{
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #222222;
+        white-space: nowrap;
       }
-      .min{
-        color: #7A86FF;
+  
+      .city-area{
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #888888;
+        white-space: nowrap;
+      }
+  
+      .city-temp-range{
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-top: 1.4rem;
+  
+        .max{
+          color: #FF7A7A;
+        }
+        .min{
+          color: #7A86FF;
+        }
+      }
+    }
+
+    .day-temperature-container{
+      display: flex;
+      flex-direction: column;
+      margin-left: auto;
+      align-items: center;
+  
+      span{
+        font-size: 1.2rem;
+        color: #444444;
+        white-space: nowrap;
+        font-weight: 600;
       }
     }
   }
 
-  .day-temperature-container{
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    align-items: center;
-
-    span{
-      font-size: 1.2rem;
-      color: #444444;
-      white-space: nowrap;
-      font-weight: 600;
-    }
+  .map{
+    width: 100%;
+    height: calc(85vh - 3.2rem - 2.8rem - 10rem);
+    max-height: 560px;
+    border: 0;
+    border-radius: 0.4rem;
   }
 `
 
@@ -80,7 +96,8 @@ export const AllInfoContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1.4rem;
-  height: 26rem;
+  height: calc(85vh - 3.2rem);
+  max-height: 780px;
   overflow: auto;
   margin-left: 1.6rem;
 
@@ -158,15 +175,14 @@ export const Uvi = styled.div<UviProps>`
 export const Wind = styled.div<WindProps>`
   .wind-container{
     display: flex;
+    justify-content: flex-start;
     height: 100%;
-    
   }
 
   .info-container{
     margin-top: 0.5rem;
     display: flex;
     flex-direction: column;
-
     .gusts-container{
       margin-top: auto;
       
@@ -178,8 +194,8 @@ export const Wind = styled.div<WindProps>`
   }
 
   .wind-circle{
-    height: 5.6rem;
-    width: 5.6rem;
+    height: 7.2rem;
+    width: 7.2rem;
     background: repeating-conic-gradient(#D6D6D6 0% 0.82%, #FFF 0.82% 1.25%);
     border-radius: 50%;
     
@@ -189,8 +205,7 @@ export const Wind = styled.div<WindProps>`
     justify-content: center;
     align-items: center;
 
-    margin-left: auto;
-    margin-right: 1.4rem;
+    margin: 0 auto;
 
     > span{
       position: absolute;
@@ -201,10 +216,10 @@ export const Wind = styled.div<WindProps>`
       font-size: 0.75rem;
     }
 
-    .n{ top: -22.5%; }
-    .e{ right: -15%; }
-    .s{ bottom: -22.5%; }
-    .w{ left: -20%; }
+    .n{ top: -17.5%; }
+    .e{ right: -12.5%; }
+    .s{ bottom: -17.5%; }
+    .w{ left: -15%; }
     
     .border-highlighter{
       width: 94%;
@@ -407,7 +422,7 @@ export const Rain = styled.div<RainProps>`
       background: transparent;
       border: 2px solid #666666;
       border-radius: 0.4rem;
-      margin: auto 1.25rem 1rem 0;
+      margin: auto 1.25rem 1rem 0.1rem;
       
       
       .fill{
@@ -436,4 +451,22 @@ export const Rain = styled.div<RainProps>`
 
   }
 
+`;
+
+export const Visibility = styled.div`
+  .small{
+    font-size: 1.2rem !important;
+  }
+`;
+
+export const Feels = styled.div`
+  .small{
+    font-size: 1.2rem !important;
+  }
+`;
+
+export const Humidity = styled.div`
+  .small{
+    font-size: 1.2rem !important;
+  }
 `;

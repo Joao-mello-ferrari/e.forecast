@@ -7,14 +7,15 @@ import { BaseCity } from '../../interfaces/baseCity'
 interface DropdownProps{
   cities: BaseCity[];
   getCity: (city: BaseCity) => Promise<void>;
+  isVisible: boolean;
 }
 
 interface A extends HTMLDivElement{
   contains: (target: EventTarget | null) => boolean
 }
 
-export const Dropdown = forwardRef<A,DropdownProps>(({ cities, getCity }, ref)=>(
-  <DropDownContainer ref={ref}>
+export const Dropdown = forwardRef<A,DropdownProps>(({ cities, getCity, isVisible }, ref)=>(
+  <DropDownContainer ref={ref} isVisible={isVisible}>
     { cities.map((city,index)=>{
       return(
         <DropdownItem

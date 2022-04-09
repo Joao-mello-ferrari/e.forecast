@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const DropDownContainer = styled.div`
+interface DropdownProps{
+  isVisible: boolean;
+}
+
+export const DropDownContainer = styled.div<DropdownProps>`
   width: 40vw;
   max-width: 576px;
   max-height: 70vh;
@@ -21,6 +25,12 @@ export const DropDownContainer = styled.div`
   left: 30%;
 
   overflow-y: auto;
+
+  transform: ${props=>props.isVisible  ? 'translateY(3vh)' : 'translateY(0vh)'};;
+  visibility: ${props=>props.isVisible  ? 'visible' : 'hidden'};
+  opacity: ${props=>props.isVisible  ? 1 : 0};
+
+  transition: all 0.2s;
 
   ::-webkit-scrollbar {
     width: 0.5em;

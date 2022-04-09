@@ -1,26 +1,26 @@
 import { useState, useEffect, useRef } from 'react';
 import type { NextPage } from 'next'
-import Image from 'next/image'
 
 import { MainContainer } from '../styledComponents/main'
 
 import { AllInfoContainer, CityContainer, MainInfoContainer } from '../styledComponents/city'
 
-
 import { api } from '../services/api'
-// import styles from '../styles/Home.module.css'
 
-
-import { Sun } from '../components/Sun';
-import { Uv } from '../components/Uv';
-import { Wind } from '../components/Wind'
 import { Header } from '../components/Header';
 import { Dropdown } from '../components/Dropdown';
+import { Uv } from '../components/Uv';
+import { Wind } from '../components/Wind'
+import { Sun } from '../components/Sun';
+import { Pressure } from '../components/Pressure';
+import { Rain } from '../components/Rain';
+import { Visibility } from '../components/Visibility';
+import { Feels } from '../components/Feels';
+import { Humidity } from '../components/Humidity';
 
 import { BaseCity } from '../interfaces/baseCity'
 import { City } from '../interfaces/city'
-import { Pressure } from '../components/Pressure';
-import { Rain } from '../components/Rain';
+import { MainInfo } from '../components/MainInfo';
 
 interface A extends HTMLDivElement{
   contains: (target: EventTarget | null) => boolean
@@ -58,7 +58,6 @@ const Home: NextPage = () => {
     setIsSubmiting(true);
     const response = await api.get(`/geo/1.0/direct?q=${searchValue}&limit=20&appid=${process.env.NEXT_PUBLIC_API_KEY}`);
 
-    console.log(response.data)
     setCities(response.data)
     setIsSubmiting(false);
     setIsDropDownOpen(true);
@@ -70,9 +69,8 @@ const Home: NextPage = () => {
     const response = await api.get(`/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&units=metric&appid=${process.env.NEXT_PUBLIC_API_KEY}`);
     setCurrentCity({ ...response.data, ...city });
     setIsDropDownOpen(false);
-    console.log({ ...response.data, ...city })
   }
-
+  
   return (
     <MainContainer>
       <Header
@@ -82,39 +80,16 @@ const Home: NextPage = () => {
         isSubmiting={isSubmiting}
       />
 
-      { cities.length !== 0 && isDropDownOpen &&
-        <Dropdown
-          cities={cities}
-          getCity={fetchCity}
-          ref={dropdownRef}
-        />
-      }
+      <Dropdown
+        cities={cities}
+        getCity={fetchCity}
+        ref={dropdownRef}
+        isVisible={cities.length !== 0 && isDropDownOpen}
+      />
       
       { Object.keys(currentCity).length !== 0 &&
         <CityContainer>
-          <MainInfoContainer>
-            <div className="country-info-container">
-              <span className="city-name">{currentCity.name}</span>
-              <span className="city-area">{currentCity.state}, {currentCity.country}</span>
-              <span className="city-temp-range">
-                <span className="max">High: {currentCity.daily[0].temp.max} ºC</span><br/>
-                <span className="min">Low: {currentCity.daily[0].temp.min} ºC</span>
-              </span>
-            </div>
-            <div className="day-temperature-container">
-              <Image 
-                src={`https://openweathermap.org/img/wn/${currentCity.current.weather[0].icon}@2x.png`} 
-                alt={currentCity.current.weather[0].description}
-                objectFit="cover" 
-                width={100} 
-                height={100} 
-              />
-              <span>{currentCity.current.weather[0].main}, {Math.round(currentCity.current.temp)} ºC</span>
-            </div>
-            {/* <div className="google-map-code">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15282225.79979123!2d73.7250245393691!3d20.750301298393563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1587818542745!5m2!1sen!2sin" width="600" height="450" frameBorder="0" style={{border:0}} aria-hidden="false" />
-        </div> */}
-          </MainInfoContainer>
+          <MainInfo city={currentCity}/>
           
           <AllInfoContainer>
             <Uv city={currentCity}/>
@@ -122,12 +97,9 @@ const Home: NextPage = () => {
             <Sun city={currentCity}/>
             <Pressure city={currentCity}/>
             <Rain city={currentCity}/>
-            <div className='base'></div>
-            <div className='base'></div>
-            <div className='base'></div>
-            <div className='base'></div>
-            <div className='base'></div>
-            <div className='base'></div>
+            <Visibility city={currentCity}/>
+            <Feels city={currentCity}/>
+            <Humidity city={currentCity}/>
           </AllInfoContainer>
         </CityContainer>
       }

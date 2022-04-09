@@ -24,7 +24,7 @@ export const DropdownItem = ({ city, getCity }: DropdownItemProps) =>{
       </div>
       <div className="country-info-container">
         <span className="city-name">{city.name}</span>
-        <span className="city-area">{city.state}, {city.country}</span>
+        <span className="city-area">{!!city.state ? `${city.state}, ` : ''} {city.country}</span>
       </div>
       <a 
         className="map-icon" 
