@@ -8,6 +8,10 @@ interface WindProps{
   angle: number;
 }
 
+interface RainProps{
+  fill: number;
+}
+
 export const CityContainer = styled.div`
   width: 100vw;
   max-width: 1440px;
@@ -386,4 +390,50 @@ export const Pressure = styled.div<WindProps>`
     top: 84%;
     right: 5%;
   }
+`;
+
+export const Rain = styled.div<RainProps>`
+  .info-container{
+    display: flex;
+    height: 100%;
+    
+    .range{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      width: 2rem;
+      height: 80%;
+      background: transparent;
+      border: 2px solid #666666;
+      border-radius: 0.4rem;
+      margin: auto 1.25rem 1rem 0;
+      
+      
+      .fill{
+        height: ${props=>(props.fill / (10/9)) + 5}%;
+        width: 100%;
+        border-radius: 0 0 0.25rem 0.25rem;
+        background: #9CB7FD;
+        position: relative;
+
+        &:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: -0.15rem;
+          right: 0;
+          background-repeat: repeat;
+          height: 5px;
+          background-size: 5px 5px;
+          background-image: radial-gradient(
+            circle at 2.5px -1.25px,
+            transparent 3px,
+            #9CB7FD 3.25px
+          );
+      }
+    }
+
+  }
+
 `;

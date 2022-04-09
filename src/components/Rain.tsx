@@ -1,32 +1,32 @@
-import { Uvi } from '../styledComponents/city'
-import { FiSun } from "react-icons/fi";
+import { Rain as StyledRain } from '../styledComponents/city'
+import { FiCloudRain } from "react-icons/fi";
 
 import { City } from '../interfaces/city'
 
-interface Uvprops{
+interface RainProps{
   city: City
 }
 
-export const Uv = ({ city }: Uvprops) =>{
-  const { uvi } = city.current;
-
-  const getUVLevel = (level: number) =>{
-    if(level < 2.5) return 'Low';
-    if(level < 5) return 'Medium';
-    if(level < 7.5) return 'High';
-     return 'Extra High';
-  }
+export const Rain = ({ city }: RainProps) =>{
+  const rain = city.daily[0].rain;
+  console.log(rain)
 
   return(
-    <Uvi className="base" uvRange={uvi*10}>
+    <StyledRain className="base" fill={(rain / 5) * 100}>
       <span className='title'>
-        <FiSun/>  
-        <span>UV Index</span>
+        <FiCloudRain/>  
+        <span>Rain</span>
       </span>
-      <span className="number">{uvi} - {getUVLevel(uvi)}</span>
-      <div className="range">
-        <div className="dot"/>
+      <div className="info-container">
+        { !!rain  
+          ? <span className="number">{rain} mm for the current day</span>
+          : <span className="number">No rain expected for today</span>
+        }
+        <div className="range">
+          <div className="fill"/>
+        </div>
       </div>
-    </Uvi>
+      
+    </StyledRain>
   )
 }

@@ -18,6 +18,7 @@ export interface City extends BaseCity{
     wind_speed: number;
     wind_deg: number;
     wind_gust: number;
+    rain: object;
     weather: {
       id: number;
       main: string;
@@ -29,6 +30,7 @@ export interface City extends BaseCity{
     temp: {
       min: number;
       max: number;
-    }
+    };
+    rain: number;
   }[]; 
 }
