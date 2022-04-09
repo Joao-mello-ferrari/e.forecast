@@ -11,8 +11,8 @@ export const Wind = ({ city }: WindProps) =>{
   const { wind_deg, wind_speed, wind_gust } = city.current;
 
   const degToCompass = (num: number) =>{
-    var val = Math.floor((num / 22.5) + 0.5);
-    var arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+    const val = Math.floor((num / 22.5) + 0.5);
+    const arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
     return arr[(val % 16)];
 }
 
@@ -26,7 +26,9 @@ export const Wind = ({ city }: WindProps) =>{
         <div className="info-container">
           <span className="number">{degToCompass(wind_deg)}<br/></span>
           <span className="number">{wind_speed} m/s<br/></span>
-          { !!wind_gust && <span className="gusts">*gusts of {wind_gust} m/s</span>}
+          <div className="gusts-container">
+            { !!wind_gust && <span className="gusts">*gusts of {wind_gust} m/s</span>}
+          </div>
         </div>
         <div className="wind-circle">
           <span className="n">N</span>

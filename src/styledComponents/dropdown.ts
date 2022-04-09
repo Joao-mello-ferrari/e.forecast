@@ -13,15 +13,14 @@ export const DropDownContainer = styled.div`
   
   border-radius: 0.4rem;
   background: #FFFFFF;
+  border: 3px solid #DDD;
 
   padding: 1.4rem;
   position: absolute;
-  top: 13vh;
+  top: 10vh;
   left: 30%;
 
   overflow-y: auto;
-
-  border: 3px solid #DDD;
 
   ::-webkit-scrollbar {
     width: 0.5em;

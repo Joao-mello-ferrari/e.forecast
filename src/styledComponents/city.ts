@@ -16,7 +16,7 @@ export const CityContainer = styled.div`
 `
 
 export const MainInfoContainer = styled.div`
-  width: 34rem;
+  width: 60rem;
   height: 12rem;
   display: flex;
   padding: 1.4rem;
@@ -74,14 +74,15 @@ export const MainInfoContainer = styled.div`
 export const AllInfoContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 0.75rem;
-
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.4rem;
+  height: 26rem;
+  overflow: auto;
   margin-left: 1.6rem;
 
   .base{
-    width: 18rem;
-    height: 10rem;
+    width: 100%;
+    height: 12rem;
     display: flex;
     flex-direction: column;
 
@@ -107,6 +108,20 @@ export const AllInfoContainer = styled.div`
       font-weight: 600;
       margin-top: 0.4rem;
     }
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.4em;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 0.2rem;
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background-color: #666666;
+    border-radius: 0.2rem;
   }
 `
 
@@ -139,16 +154,22 @@ export const Uvi = styled.div<UviProps>`
 export const Wind = styled.div<WindProps>`
   .wind-container{
     display: flex;
+    height: 100%;
+    
   }
 
   .info-container{
     margin-top: 0.5rem;
-    
-    .gusts{
-      font-size: 0.8rem;
-      color: #FFFFFF;
-      display: inline-block;
-      margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+
+    .gusts-container{
+      margin-top: auto;
+      
+      .gusts{
+        font-size: 0.8rem;
+        color: #FFFFFF;
+      }
     }
   }
 
@@ -236,4 +257,41 @@ export const Wind = styled.div<WindProps>`
     top: 50%;
     margin-top: -1.25rem;
   }
+`;
+
+export const Sun = styled.div`
+  .sun-number{
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem !important;
+    
+    & + .sun-number{
+      margin-top: 0rem;
+    }
+
+    > svg{
+      margin-left: 0.7rem
+    }
+
+    .day{ color: #E6C158 }
+    .night{ color: #00022E }
+  }
+  
+
+  .info-container{
+    display: flex;
+    margin-top: auto;    
+
+    .info{
+      color: #888888;
+      display: inline-block; 
+      
+      & + .info{
+        margin-left: 1.2rem;
+      }
+    }
+
+  }
+
+
 `;
