@@ -295,3 +295,95 @@ export const Sun = styled.div`
 
 
 `;
+
+export const Pressure = styled.div<WindProps>`
+  span + span{
+    margin-left: 1rem;
+  }
+
+  .pressure-container{
+    display: flex;
+
+    > span{
+      margin-top: 1rem !important;
+    }
+  }
+
+  .pressure-circle{
+    height: 7.2rem;
+    width: 7.2rem;
+    background: repeating-conic-gradient(#D6D6D6 0% 0.82%, #FFF 0.82% 1.25%);
+    border-radius: 50%;
+    
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto;
+
+    .border-highlighter{
+      width: 94%;
+      height: 94%;
+      background: #D6D6D6;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .border-cropper{
+      width: 50%;
+      height: 50%;
+      background: #D6D6D6;
+      
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: rotate(45deg);
+      transform-origin: top left;
+
+    }
+  }
+
+  .arrow-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    
+    .arrow-body{
+        width: 0.6rem; 
+        height: 4rem; 
+        background: #AAAAAA;
+        border-radius: 0.2rem;
+        transform: rotate(${props=>props.angle}deg);
+        transform-origin: top;
+        position: absolute;
+      }
+  }
+
+  .round-background{
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    background: rgba(136,136,136,0.1);
+    position: absolute;
+    top: 50%;
+    margin-top: -1.25rem;
+  }
+  
+  .label{
+    position: absolute;
+    color: #888888;
+  }
+
+  .low{
+    top: 84%;
+    left: 5%;
+  }
+
+  .high{
+    top: 84%;
+    right: 5%;
+  }
+`;

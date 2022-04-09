@@ -19,6 +19,7 @@ import { Dropdown } from '../components/Dropdown';
 
 import { BaseCity } from '../interfaces/baseCity'
 import { City } from '../interfaces/city'
+import { Pressure } from '../components/Pressure';
 
 interface A extends HTMLDivElement{
   contains: (target: EventTarget | null) => boolean
@@ -118,6 +119,7 @@ const Home: NextPage = () => {
             <Uv city={currentCity}/>
             <Wind city={currentCity}/>
             <Sun city={currentCity}/>
+            <Pressure city={currentCity}/>
             <div className='base'></div>
             <div className='base'></div>
             <div className='base'></div>
