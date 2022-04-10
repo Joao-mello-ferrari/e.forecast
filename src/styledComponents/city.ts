@@ -17,6 +17,10 @@ export const CityContainer = styled.div`
   max-width: 1440px;
   display: flex;
   padding: 1.6rem;
+
+  @media(max-width: 768px){
+    flex-direction: column;
+  }
 `
 
 export const MainInfoContainer = styled.div`
@@ -89,6 +93,26 @@ export const MainInfoContainer = styled.div`
     border: 0;
     border-radius: 0.4rem;
   }
+
+  @media(max-width: 768px){
+    width: 100%;
+
+    .main-info-container{
+      height: 8rem;
+      
+      .city-name{
+        font-size: 1.4rem!important;
+      }
+    }
+
+    .country-info-container{
+      width: 50%!important;
+    }
+
+    .map{
+      margin-top: 1rem;
+    }
+  }
 `
 
 export const AllInfoContainer = styled.div`
@@ -100,6 +124,15 @@ export const AllInfoContainer = styled.div`
   max-height: 780px;
   overflow: auto;
   margin-left: 1.6rem;
+
+  @media(max-width: 768px){
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+    margin-left: 0;
+    overflow: unset;
+    height: auto!important;
+    max-height: unset;
+  }
 
   .base{
     width: 100%;

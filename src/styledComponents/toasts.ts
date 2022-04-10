@@ -3,17 +3,17 @@ import styled from 'styled-components'
 export const ToastsContainer = styled.div`
   position: absolute;
   top: 0;
-  padding-top: 2.4rem;
   right: 0;
   overflow: hidden;
   width: 16rem;
-  z-index: 1;
-  max-height: 90vh;
+  z-index: 2;
+  max-height: 60vh;
+  padding-bottom: 2rem;
 `;
 
 export const Toast = styled.div`
   position: relative;
-  top: -3rem;
+  top: -4rem;
   padding-top: 2.4rem;
 
   width: 14rem;
@@ -28,7 +28,7 @@ export const Toast = styled.div`
   -webkit-animation: slide 3s forwards;
   animation: slide 3s forwards;
   
-  & + .toast{
+  & + div{
     margin-top: 0.5rem;
   }
 
@@ -57,14 +57,14 @@ export const Toast = styled.div`
   }
   
   @-webkit-keyframes slide {
-    20% {top: 0;}
-    80% {top: 0;}
-    100% {top: -8rem;}
+    20% {top: 1rem;}
+    80% {top: 1rem;}
+    100% {top: -4rem;}
   }
 
   @keyframes slide {
-    20% {top: 0;}
-    80% {top: 0;}
-    100% {top: -8rem;}
+    20% {top: 1rem;}
+    80% {top: 1rem;}
+    100% {top: -4rem;}
   }
 `;
