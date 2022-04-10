@@ -1,9 +1,15 @@
 import styled from 'styled-components'
 
-export const DropDownContainer = styled.div`
+interface DropdownProps{
+  isVisible: boolean;
+}
+
+export const DropDownContainer = styled.div<DropdownProps>`
   width: 40vw;
   max-width: 576px;
   max-height: 70vh;
+
+  z-index: 1;
   
   display: flex;
   flex-direction: column;
@@ -11,15 +17,20 @@ export const DropDownContainer = styled.div`
   
   border-radius: 0.4rem;
   background: #FFFFFF;
+  border: 3px solid #DDD;
 
   padding: 1.4rem;
   position: absolute;
-  top: 13vh;
+  top: 10vh;
   left: 30%;
 
   overflow-y: auto;
 
-  border: 3px solid #DDD;
+  transform: ${props=>props.isVisible  ? 'translateY(3vh)' : 'translateY(0vh)'};;
+  visibility: ${props=>props.isVisible  ? 'visible' : 'hidden'};
+  opacity: ${props=>props.isVisible  ? 1 : 0};
+
+  transition: all 0.2s;
 
   ::-webkit-scrollbar {
     width: 0.5em;

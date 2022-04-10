@@ -25,25 +25,24 @@ export const Logo = styled.span`
 `
 
 export const Label = styled.label`
-margin-left: 30%;
-width: 32rem;
-height: 2.8rem;
-border: 1.8px solid #fff;
+  margin-left: 30%;
+  width: 32rem;
+  height: 2.8rem;
+  border: 1.8px solid #fff;
 
-background: #fff;
-color: #444;
-display: flex;
-flex-direction: row;
-border-radius: 0.4rem;
+  background: #fff;
+  color: #444;
+  display: flex;
+  flex-direction: row;
+  border-radius: 0.4rem;
 
-transition: border 0.2s;
+  transition: border 0.2s;
 
-&:focus-within{
-  border: 1.8px solid #000C2C;
-  color: #000C2C
-}
-
-`
+  &:focus-within{
+    border: 1.8px solid #000C2C;
+    color: #000C2C
+  }
+`;
 
 export const Input = styled.input`
   flex: 1;
@@ -56,7 +55,7 @@ export const Input = styled.input`
   
   color: #444;
   background: transparent;
-  font-size: 0.9rem;
+  font-size: 1rem;
 
   margin: 0 -1rem;
 `
@@ -68,6 +67,9 @@ export const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
 
+  svg{
+    font-size: 1.2rem;
+  }
 `;
 
 export const LoaderContainer = styled.div`

@@ -1,29 +1,33 @@
-import { KeyboardEventHandler, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { NextPage } from 'next'
-import Image from 'next/image'
 
-import { MainContainer } from '../components/main'
-import { Header, Logo, Label, Input, IconContainer, LoaderContainer } from '../components/header'
-import { DropDownContainer, DropDownItem } from '../components/dropdown'
-import { FiSearch,FiMapPin } from "react-icons/fi";
-import { PuffLoader	 } from "react-spinners";
+import { MainContainer } from '../styledComponents/main'
+
+import { AllInfoContainer, CityContainer, MainInfoContainer } from '../styledComponents/city'
 
 import { api } from '../services/api'
-// import styles from '../styles/Home.module.css'
 
-interface BaseCity{
-  name: string;
-  state: string;
-  country: string;
-  lat: number;
-  lon: number;
-}
+import { Header } from '../components/Header';
+import { Dropdown } from '../components/Dropdown';
+import { Uv } from '../components/Uv';
+import { Wind } from '../components/Wind'
+import { Sun } from '../components/Sun';
+import { Pressure } from '../components/Pressure';
+import { Rain } from '../components/Rain';
+import { Visibility } from '../components/Visibility';
+import { Feels } from '../components/Feels';
+import { Humidity } from '../components/Humidity';
+
+import { BaseCity } from '../interfaces/baseCity'
+import { City } from '../interfaces/city'
+import { MainInfo } from '../components/MainInfo';
 
 interface A extends HTMLDivElement{
   contains: (target: EventTarget | null) => boolean
 }
 
 const Home: NextPage = () => {
+  const [currentCity, setCurrentCity] = useState<City>({} as City);
   const [cities, setCities] = useState<BaseCity[]>([]);
 
   const [searchValue, setSearchValue] = useState('');
@@ -49,77 +53,55 @@ const Home: NextPage = () => {
   })
 
   const handleSearch = async() =>{
-    setIsSubmiting(true);
-    const response = await api.get(`/geo/1.0/direct?q=${searchValue}&limit=20&appid=${process.env.NEXT_PUBLIC_API_KEY}`)
+    if(!searchValue) return;
 
-    console.log(response.data)
+    setIsSubmiting(true);
+    const response = await api.get(`/geo/1.0/direct?q=${searchValue}&limit=20&appid=${process.env.NEXT_PUBLIC_API_KEY}`);
+
     setCities(response.data)
     setIsSubmiting(false);
     setIsDropDownOpen(true);
     setHasSubmited(true);
   }
 
-  const checkIfShouldSubmit:KeyboardEventHandler<HTMLInputElement> = async(e) =>{
-    if(e.key != 'Enter') return
-    return handleSearch();
+  const fetchCity = async(city: BaseCity) =>{
+    const { lat, lon } = city;
+    const response = await api.get(`/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&units=metric&appid=${process.env.NEXT_PUBLIC_API_KEY}`);
+    setCurrentCity({ ...response.data, ...city });
+    setIsDropDownOpen(false);
   }
-
+  
   return (
     <MainContainer>
-      <Header>
-        <Logo>e.forecast</Logo>
-        <Label>
-          <IconContainer onClick={handleSearch}>
-            <FiSearch height={12} width={12}/>
-          </IconContainer>
-          <Input
-            placeholder='Search for your city'
-            onKeyDown={checkIfShouldSubmit}
-            onChange={e=>setSearchValue(e.target.value)}
-            onFocus={e=>setIsDropDownOpen(true)}
-          />
-          { isSubmiting &&
-            <LoaderContainer>
-              <PuffLoader	size={20} color="#000C2C"/>
-            </LoaderContainer>
-          }
-        </Label>
-        
-      </Header>
-      { cities.length !== 0 && isDropDownOpen &&
-        <DropDownContainer ref={dropdownRef}>
-          { cities.map((city,index)=>{
-            return(
-              <DropDownItem key={index}>
-                <div className="country-image-container">
-                  <Image 
-                    src={`https://countryflagsapi.com/svg/${city.country}`} 
-                    objectFit="cover" 
-                    width={142} 
-                    height={100} 
-                    alt={city.name} 
-                  />
-                </div>
-                <div className="country-info-container">
-                  <span className="city-name">{city.name}</span>
-                  <span className="city-area">{city.state}, {city.country}</span>
-                </div>
-                <a 
-                  className="map-icon" 
-                  href={`https://maps.google.com/?q=${city.lat},${city.lon}`} 
-                  target='_blank'
-                  rel="noreferrer"
-                >
-                  <FiMapPin/>
-                  <span>See on map</span>
-                </a>
-              </DropDownItem>
-            )
-          })
+      <Header
+        onSearch={handleSearch}
+        setSearchValue={setSearchValue}
+        setIsDropDownOpen={setIsDropDownOpen}
+        isSubmiting={isSubmiting}
+      />
 
-          }
-            
-        </DropDownContainer>
+      <Dropdown
+        cities={cities}
+        getCity={fetchCity}
+        ref={dropdownRef}
+        isVisible={cities.length !== 0 && isDropDownOpen}
+      />
+      
+      { Object.keys(currentCity).length !== 0 &&
+        <CityContainer>
+          <MainInfo city={currentCity}/>
+          
+          <AllInfoContainer>
+            <Uv city={currentCity}/>
+            <Wind city={currentCity}/>
+            <Sun city={currentCity}/>
+            <Pressure city={currentCity}/>
+            <Rain city={currentCity}/>
+            <Visibility city={currentCity}/>
+            <Feels city={currentCity}/>
+            <Humidity city={currentCity}/>
+          </AllInfoContainer>
+        </CityContainer>
       }
     </MainContainer> 
   )
