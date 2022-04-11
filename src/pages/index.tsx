@@ -3,9 +3,10 @@ import type { NextPage } from 'next'
 
 import { MainContainer } from '../styledComponents/main'
 
-import { AllInfoContainer, CityContainer, MainInfoContainer } from '../styledComponents/city'
+import { AllInfoContainer, CityContainer } from '../styledComponents/city'
 
 import { api } from '../services/api'
+import { useToast } from '../context/toastContext'
 
 import { Header } from '../components/Header';
 import { Dropdown } from '../components/Dropdown';
@@ -32,12 +33,12 @@ const Home: NextPage = () => {
 
   const [searchValue, setSearchValue] = useState('');
   const [isSubmiting, setIsSubmiting] = useState(false);
-  const [hasSubmited, setHasSubmited] = useState(false);
 
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   const dropdownRef = useRef<A>(null);
 
+  const { addToast } = useToast();
 
   useEffect(()=>{
     function checkIfClicked(e: MouseEvent){
@@ -55,20 +56,47 @@ const Home: NextPage = () => {
   const handleSearch = async() =>{
     if(!searchValue) return;
 
-    setIsSubmiting(true);
-    const response = await api.get(`/geo/1.0/direct?q=${searchValue}&limit=20&appid=${process.env.NEXT_PUBLIC_API_KEY}`);
+    try{
+      setIsSubmiting(true);
+      const response = await api.get(`/geo/1.0/direct?q=${searchValue}&limit=20&appid=${process.env.NEXT_PUBLIC_API_KEY}`);
+      if(response.data.length === 0) throw new Error("No cities were found");
 
-    setCities(response.data)
-    setIsSubmiting(false);
-    setIsDropDownOpen(true);
-    setHasSubmited(true);
+      addToast({ type: 'success', title: 'Cities search', message:`Your search found ${response.data.length} citie(s)!` });
+      setCities(response.data);
+      setIsDropDownOpen(true);
+    }catch(err: any){
+      if(err?.message === "No cities were found"){
+        addToast({ type: 'warning', title: 'Cities search', message:'Sorry, we couldn\'t find any cities.' })
+      }else{
+        addToast({ type: 'error', title: 'Cities search', message:'Sorry, something went wrong.' })
+      }
+    }finally{
+      setIsSubmiting(false);
+    }
   }
 
   const fetchCity = async(city: BaseCity) =>{
     const { lat, lon } = city;
-    const response = await api.get(`/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&units=metric&appid=${process.env.NEXT_PUBLIC_API_KEY}`);
-    setCurrentCity({ ...response.data, ...city });
-    setIsDropDownOpen(false);
+
+    try{
+      setIsSubmiting(true);
+      
+      const response = await api.get(`/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&units=metric&appid=${process.env.NEXT_PUBLIC_API_KEY}`);
+      if(response.data.length === 0) throw new Error("Could not find city data.");
+      
+      setCurrentCity({ ...response.data, ...city });
+      setIsDropDownOpen(false);
+
+      addToast({ type: 'success', title: 'City search', message:`Data found sucessfully!` });
+    }catch(err: any){
+      if(err?.message === "Could not find city data."){
+        addToast({ type: 'warning', title: 'City', message:'Sorry, we couldn\'t fetch the data.' })
+      }else{
+        addToast({ type: 'error', title: 'City search', message:'Sorry, something went wrong.' })
+      }
+    }finally{
+      setIsSubmiting(false);
+    }
   }
   
   return (

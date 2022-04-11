@@ -45,6 +45,12 @@ export const DropDownContainer = styled.div<DropdownProps>`
     background-color: darkgrey;
     border-radius: 0.2rem;
   }
+
+  @media(max-width: 768px){
+    width: 90%;
+    top: 7vh;
+    left: 5%;
+  }
   `;
 
   export const DropDownItem = styled.div`
@@ -130,5 +136,22 @@ export const DropDownContainer = styled.div<DropdownProps>`
         transition: opacity 0.2s;
       }
     }
+
+  @media(max-width: 768px){
+    .country-image-container{
+      width: 4rem;
+    }
+
+    .city-name{
+      font-size: 1.2rem!important;
+    }
+
+    .map-icon{
+      > span{
+        top: 1.7rem;
+        left: -1.4rem;
+      }
+    }
+
   }
 `
