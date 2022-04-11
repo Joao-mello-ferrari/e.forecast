@@ -34,7 +34,7 @@ export const MainInfo = ({ city }: MainInfoProps) =>{
 
       <div className="google-map-code">
         <iframe 
-          src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_MAPS_API_KEY}&q=${city.name},${city.state}&center=${lat},${lon}&zoom=8&maptype=satellite`}
+          src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_MAPS_API_KEY}&q=${city.name},${city.state}&center=${lat},${lon}&zoom=8&maptype=satellite&language=en`}
           className="map"
           aria-hidden="true" 
         />

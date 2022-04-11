@@ -39,7 +39,7 @@ In case you wanna download the project for yourself, a .env.local file must be f
 * The google maps api needs you to create a project and a secret api key, so the maps fetching will be possible.
 * The open weather map will require a api key as well.
 
-On the .env.local.example, you should find the apis key names. Just put your secrets and you will be ready to go!
+On the .env.example, you should find the apis key names. Just put your secrets and you will be ready to go!
 
    # Main concepts used within this project
    * **React**
