@@ -1,6 +1,6 @@
 # Why build a forecast application?
-In order to practice and stablish a solid connection with the next.js way of coding, i decided to develop a web application.<br/>
-However, another thing i have noticed is the lack of beutiful forecast websites available on the internet.<br/>
+In order to practice and stablish a solid connection with the next.js way of coding, i decided to develop a web application.
+However, another thing i have noticed is the lack of beutiful forecast websites available on the internet.
 Therefore, i came to the conclusion that i would learn a lot during the project and still be developing something usefull and nice.
 
 # External APIs used for this project
