@@ -12,7 +12,7 @@ Therefore, i came to the conclusion that i would learn a lot during the project 
 
 # Check the project for yourself!
 **Youtube video** > https://youtu.be/r5QflN4EOTM<br />
-**Project website** > https://6237abede42099088ab7ba6c--thirsty-hawking-4883c2.netlify.app/
+**Project website** > https://6255c2eb1c90860008c9b7f5--illustrious-cajeta-9465bc.netlify.app/
 ![elearning home screen. Header on top, with user info and navigation, and courses cards, in the middle/bottom screen](https://user-images.githubusercontent.com/67838782/162780176-231ce025-4b07-42f0-b4d0-0f28d6b471ef.png "eforecast preview") 
 # How can i download and run the project?
 With simples steps, it will be able to run everything locally.
