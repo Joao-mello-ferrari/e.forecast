@@ -22,6 +22,7 @@ import { Humidity } from '../components/Humidity';
 import { BaseCity } from '../interfaces/baseCity'
 import { City } from '../interfaces/city'
 import { MainInfo } from '../components/MainInfo';
+import { DefaultText } from '../components/DefaultText';
 
 interface A extends HTMLDivElement{
   contains: (target: EventTarget | null) => boolean
@@ -114,6 +115,11 @@ const Home: NextPage = () => {
         ref={dropdownRef}
         isVisible={cities.length !== 0 && isDropDownOpen}
       />
+      
+      { Object.keys(currentCity).length === 0 &&  
+        !(cities.length !== 0 && isDropDownOpen) &&
+        <DefaultText/> 
+      }
       
       { Object.keys(currentCity).length !== 0 &&
         <CityContainer>
