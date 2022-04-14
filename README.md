@@ -35,7 +35,7 @@ With simples steps, it will be able to run everything locally.
    yarn (or npm)
    yarn dev (or npm dev)
 ```
-In case you wanna download the project for yourself, a .env.local file must be filled with some api keys ⬇
+Finally, a .env.local file must be filled with some api keys ⬇
 * The google maps api needs you to create a project and a secret api key, so the maps fetching will be possible.
 * The open weather map will require a api key as well.
 
@@ -43,7 +43,7 @@ On the .env.example, you should find the apis key names. Just put your secrets a
 
    # Main concepts used within this project
    * **React**
-   * **Styled Components** for
+   * **Styled Components** for  advanced css features
    * **Next.js** for performance and SSR/SSG functionalities
    * **Use of external APIs**, to fetch every data of the application 
    
