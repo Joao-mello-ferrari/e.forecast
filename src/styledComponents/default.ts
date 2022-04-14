@@ -24,4 +24,12 @@ export const Default = styled.button`
     color: #002074;
   }
 
+  @media(max-width: 768px){
+    width: 80vw;
+    height: 60vh;
+    
+    top: 20vh;
+    left: 10vw;
+  }
+
 `

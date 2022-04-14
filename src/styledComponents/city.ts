@@ -124,6 +124,7 @@ export const AllInfoContainer = styled.div`
   max-height: 780px;
   overflow: auto;
   margin-left: 1.6rem;
+  padding-right: 0.4rem;
 
   @media(max-width: 768px){
     grid-template-columns: 1fr;
@@ -132,6 +133,7 @@ export const AllInfoContainer = styled.div`
     overflow: unset;
     height: auto!important;
     max-height: unset;
+    padding-right: 0;
   }
 
   .base{
