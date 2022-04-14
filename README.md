@@ -35,7 +35,7 @@ With simples steps, it will be able to run everything locally.
    yarn (or npm)
    yarn dev (or npm dev)
 ```
-Finally, a .env.local file must be filled with some api keys ⬇
+Finally, a .env file must be filled with some api keys ⬇
 * The google maps api needs you to create a project and a secret api key, so the maps fetching will be possible.
 * The open weather map will require a api key as well.
 
