@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import type { NextPage } from 'next'
+import Head from 'next/head';
 
 import { MainContainer } from '../styledComponents/main'
 
@@ -102,6 +103,10 @@ const Home: NextPage = () => {
   
   return (
     <MainContainer>
+      <Head>
+        <title>e.forecast</title>
+      </Head>
+
       <Header
         onSearch={handleSearch}
         setSearchValue={setSearchValue}
