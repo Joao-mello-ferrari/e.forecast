@@ -12,7 +12,7 @@ Therefore, i came to the conclusion that i would learn a lot during the project 
 
 # Check the project for yourself!
 **Youtube video** > https://youtu.be/r5QflN4EOTM<br />
-**Project website** > https://6255cc1f6b915700082de3d2--illustrious-cajeta-9465bc.netlify.app/
+**Project website** > https://eforecast.joaomellof.com/
 ![elearning home screen. Header on top, with user info and navigation, and courses cards, in the middle/bottom screen](https://user-images.githubusercontent.com/67838782/162780176-231ce025-4b07-42f0-b4d0-0f28d6b471ef.png "eforecast preview") 
 # How can i download and run the project?
 With simples steps, it will be able to run everything locally.
@@ -35,7 +35,7 @@ With simples steps, it will be able to run everything locally.
    yarn (or npm)
    yarn dev (or npm dev)
 ```
-In case you wanna download the project for yourself, a .env.local file must be filled with some api keys ⬇
+Finally, a .env file must be filled with some api keys ⬇
 * The google maps api needs you to create a project and a secret api key, so the maps fetching will be possible.
 * The open weather map will require a api key as well.
 
@@ -43,7 +43,7 @@ On the .env.example, you should find the apis key names. Just put your secrets a
 
    # Main concepts used within this project
    * **React**
-   * **Styled Components** for
+   * **Styled Components** for  advanced css features
    * **Next.js** for performance and SSR/SSG functionalities
    * **Use of external APIs**, to fetch every data of the application 
    
