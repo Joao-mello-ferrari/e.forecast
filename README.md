@@ -11,7 +11,7 @@ Therefore, i came to the conclusion that i would learn a lot during the project 
 > And last, but not least, the [Google maps embed api](https://developers.google.com/maps/documentation/embed/get-started) so the city map could be shown.
 
 # Check the project for yourself!
-**Youtube video** > https://youtu.be/r5QflN4EOTM<br />
+**Youtube video** > https://www.youtube.com/watch?v=y34j8Q164hg<br />
 **Project website** > https://eforecast.joaomellof.com/
 ![elearning home screen. Header on top, with user info and navigation, and courses cards, in the middle/bottom screen](https://user-images.githubusercontent.com/67838782/162780176-231ce025-4b07-42f0-b4d0-0f28d6b471ef.png "eforecast preview") 
 # How can i download and run the project?
