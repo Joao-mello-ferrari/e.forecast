@@ -8,22 +8,27 @@ interface Uvprops{
 }
 
 export const Uv = ({ city }: Uvprops) =>{
-  const { uvi } = city.current;
+  const clouds = city.clouds;
 
   const getUVLevel = (level: number) =>{
-    if(level < 2.5) return 'Low';
-    if(level < 5) return 'Medium';
-    if(level < 7.5) return 'High';
-     return 'Extra High';
+    if(level < 25) return 'High';
+    if(level < 50) return 'Medium';
+    if(level < 75) return 'Low';
+     return 'Extra low';
+  }
+
+  const convertCloudsToUv = () => {
+    const normalized = Math.min(clouds.all, 100);
+    return 100 - normalized;
   }
 
   return(
-    <Uvi className="base" uvRange={uvi*10}>
+    <Uvi className="base" uvRange={convertCloudsToUv()}>
       <span className='title'>
         <FiSun/>  
         <span>UV Index</span>
       </span>
-      <span className="number">{uvi} - {getUVLevel(uvi)}</span>
+      <span className="number">{convertCloudsToUv() / 10} - {getUVLevel(clouds.all)}</span>
       <div className="range">
         <div className="dot"/>
       </div>

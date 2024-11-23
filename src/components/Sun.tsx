@@ -8,24 +8,24 @@ interface SunProps{
 }
 
 export const Sun = ({ city }: SunProps) =>{
-  const { timezone_offset } = city;
-  const { sunrise, sunset } = city.current;
+  const { timezone } = city;
+  const { sunrise, sunset } = city.sys;
 
   const now = new Date();
 
-  const rise = new Date((sunrise * 1000)+(now.getTimezoneOffset() * 60000)+(timezone_offset*1000))
+  const rise = new Date((sunrise * 1000)+(now.getTimezoneOffset() * 60000)+(timezone*1000))
   const presentedRise = rise.toLocaleDateString('us-EN',{
     hour: '2-digit',
     minute: '2-digit',
   }).split(' ')[1];
 
-  const set = new Date((sunset * 1000)+(now.getTimezoneOffset() * 60000)+(timezone_offset*1000))
+  const set = new Date((sunset * 1000)+(now.getTimezoneOffset() * 60000)+(timezone*1000))
   const presentedSet = set.toLocaleDateString('us-EN',{
     hour: '2-digit',
     minute: '2-digit',
   }).split(' ')[1];
 
-  let localTime = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (timezone_offset * 1000));
+  let localTime = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (timezone*1000));
 
   const presentedLocalTime = localTime.toLocaleDateString('us-EN',{
     hour: '2-digit',

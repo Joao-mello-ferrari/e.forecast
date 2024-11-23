@@ -1,36 +1,50 @@
 import { BaseCity } from './baseCity'
 
-export interface City extends BaseCity{
-  timezone: string;
-  timezone_offset: number;
-  current: {
-    dt: number;
-    sunrise: number;
-    sunset: number;
+
+export interface City extends BaseCity {
+  coord: {
+    lon: number;
+    lat: number;
+  };
+  weather: {
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }[];
+  base: string;
+  main: {
     temp: number;
     feels_like: number;
+    temp_min: number;
+    temp_max: number;
     pressure: number;
     humidity: number;
-    dew_point: number;
-    uvi: number;
-    clouds: number;
-    visibility: number;
-    wind_speed: number;
-    wind_deg: number;
-    wind_gust: number;
-    rain: object;
-    weather: {
-      id: number;
-      main: string;
-      description: string;
-      icon: string;
-    }[];
+    sea_level?: number;
+    grnd_level?: number;
   };
-  daily: {
-    temp: {
-      min: number;
-      max: number;
-    };
-    rain: number;
-  }[]; 
-}
+  visibility: number;
+  wind: {
+    speed: number;
+    deg: number;
+    gust?: number;
+  };
+  rain: {
+    "1h": number;
+  };
+  clouds: {
+    all: number;
+  };
+  dt: number;
+  sys: {
+    type: number;
+    id: number;
+    country: string;
+    sunrise: number;
+    sunset: number;
+  };
+  timezone: number;
+  id: number;
+  name: string;
+  cod: number;
+};

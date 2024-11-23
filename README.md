@@ -6,7 +6,7 @@ Therefore, i came to the conclusion that i would learn a lot during the project 
 # External APIs used for this project
 > I could not forget to highlight that all forecasted data is fetched from [Open weather map](https://openweathermap.org/api).
 > 
-> To get each country's flag, the [Country flags api](https://www.countryflagsapi.com/) has been used.
+> To get each country's flag, the [Country flags api](https://www.flagsapi.com/) has been used.
 > 
 > And last, but not least, the [Google maps embed api](https://developers.google.com/maps/documentation/embed/get-started) so the city map could be shown.
 

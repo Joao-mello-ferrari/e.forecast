@@ -8,7 +8,7 @@ interface PressureProps{
 }
 
 export const Pressure = ({ city }: PressureProps) =>{
-  const { pressure } = city.current;
+  const { pressure } = city.main;
 
   const getRotationAngle = () =>{
     if(pressure < 1013.25) return 135 * (pressure-1013.25) / 143.25;

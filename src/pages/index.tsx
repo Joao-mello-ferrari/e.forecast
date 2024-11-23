@@ -83,7 +83,8 @@ const Home: NextPage = () => {
     try{
       setIsSubmiting(true);
       
-      const response = await api.get(`/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&units=metric&appid=${process.env.NEXT_PUBLIC_API_KEY}`);
+      //const response = await api.get(`/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&units=metric&appid=${process.env.NEXT_PUBLIC_ONE_CALL_API_KEY}`);
+      const response = await api.get(`/data/2.5/weather?lat=${lat}&lon=${lon}&exclude={part}&units=metric&appid=${process.env.NEXT_PUBLIC_ONE_CALL_API_KEY}`);
       if(response.data.length === 0) throw new Error("Could not find city data.");
       
       setCurrentCity({ ...response.data, ...city });

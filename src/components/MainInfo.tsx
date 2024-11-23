@@ -7,7 +7,7 @@ interface MainInfoProps{
 }
 
 export const MainInfo = ({ city }: MainInfoProps) =>{
-  const { name, state, country, daily, current, lat, lon } = city;
+  const { name, state, country, main, weather, lat, lon } = city;
 
   return(
     <MainInfoContainer>
@@ -16,19 +16,19 @@ export const MainInfo = ({ city }: MainInfoProps) =>{
           <span className="city-name">{name}</span>
           <span className="city-area">{!!state ? `${state}, ` : ''} {country}</span>
           <span className="city-temp-range">
-            <span className="max">High: {(daily[0].temp.max).toFixed(1)} ºC</span><br/>
-            <span className="min">Low: {(daily[0].temp.min).toFixed(1)} ºC</span>
+            <span className="max">High: {(main.temp_min).toFixed(1)} ºC</span><br/>
+            <span className="min">Low: {(main.temp_max).toFixed(1)} ºC</span>
           </span>
         </div>
         <div className="day-temperature-container">
           <Image
-            src={`https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`} 
-            alt={current.weather[0].description}
+            src={`https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`} 
+            alt={weather[0].description}
             objectFit="cover" 
             width={100} 
             height={100} 
           />
-          <span>{current.weather[0].main}, {Math.round(current.temp)} ºC</span>
+          <span>{weather[0].main}, {Math.round(main.temp)} ºC</span>
         </div>
       </div>
 

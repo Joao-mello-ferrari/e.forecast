@@ -15,7 +15,7 @@ export const DropdownItem = ({ city, getCity }: DropdownItemProps) =>{
     <StyledDropDownItem onClick={()=>getCity(city)}>
       <div className="country-image-container">
         <Image 
-          src={`https://countryflagsapi.com/svg/${city.country}`} 
+          src={`https://flagsapi.com/${city.country}/flat/64.png`} 
           objectFit="cover" 
           width={142} 
           height={100} 

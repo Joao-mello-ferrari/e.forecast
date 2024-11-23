@@ -203,7 +203,7 @@ export const Uvi = styled.div<UviProps>`
 
     position: absolute;
     top: -0.15rem;
-    left: ${props => `${props.uvRange/(100/97)}%`};
+    left: ${props => `${props.uvRange/(100/98)}%`};
   }
 `;
 

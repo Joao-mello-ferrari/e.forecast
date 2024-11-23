@@ -8,7 +8,7 @@ interface VisibilityProps{
 }
 
 export const Visibility = ({ city }: VisibilityProps) =>{
-  const visibility = city.current.visibility;
+  const visibility = city.visibility;
   
   const getDescription = (): string =>{
     if(visibility > 8000) return 'It\'s perfectly clear right now'

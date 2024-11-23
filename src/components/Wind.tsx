@@ -8,7 +8,7 @@ interface WindProps{
 }
 
 export const Wind = ({ city }: WindProps) =>{
-  const { wind_deg, wind_speed, wind_gust } = city.current;
+  const { speed, deg, gust } = city.wind;
 
   const degToCompass = (num: number) =>{
     const val = Math.floor((num / 22.5) + 0.5);
@@ -17,17 +17,17 @@ export const Wind = ({ city }: WindProps) =>{
 }
 
   return(
-    <StyledWind className="base" angle={wind_deg-180}>
+    <StyledWind className="base" angle={deg-180}>
       <span className='title'>
         <FiWind/>  
         <span>Wind</span>
       </span>
       <div className="wind-container">
         <div className="info-container">
-          <span className="number">{degToCompass(wind_deg)}<br/></span>
-          <span className="number">{wind_speed} m/s<br/></span>
+          <span className="number">{degToCompass(deg)}<br/></span>
+          <span className="number">{speed} m/s<br/></span>
           <div className="gusts-container">
-            { !!wind_gust && <span className="gusts">*gusts of {wind_gust} m/s</span>}
+            { !!gust && <span className="gusts">*gusts of {gust} m/s</span>}
           </div>
         </div>
         <div className="wind-circle">

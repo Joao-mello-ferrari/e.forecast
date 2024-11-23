@@ -8,7 +8,7 @@ interface RainProps{
 }
 
 export const Rain = ({ city }: RainProps) =>{
-  const rain = city.daily[0].rain;
+  const rain = city.rain ? city.rain['1h'] : null;
 
   return(
     <StyledRain className="base" fill={!!rain ? (Math.min(rain,5) / 5) * 100 : 0}>

@@ -8,7 +8,7 @@ interface FeelsProps{
 }
 
 export const Feels = ({ city }: FeelsProps) =>{
-  const { temp, feels_like } = city.current;
+  const { temp, feels_like } = city.main;
   
   const getDescription = (): string =>{
     if(Math.abs(temp-feels_like) < 2) return 'Close to actual temperature';
