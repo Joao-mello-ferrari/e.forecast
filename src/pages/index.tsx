@@ -24,6 +24,8 @@ import { BaseCity } from '../interfaces/baseCity'
 import { City } from '../interfaces/city'
 import { MainInfo } from '../components/MainInfo';
 import { DefaultText } from '../components/DefaultText';
+import { NewsContainer } from '../styledComponents/news';
+import axios from 'axios';
 
 interface A extends HTMLDivElement{
   contains: (target: EventTarget | null) => boolean
@@ -37,6 +39,7 @@ const Home: NextPage = () => {
   const [isSubmiting, setIsSubmiting] = useState(false);
 
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const [data, setData] = useState("");
 
   const dropdownRef = useRef<A>(null);
 
@@ -54,6 +57,20 @@ const Home: NextPage = () => {
     }
 
   })
+
+  useEffect(()=>{
+    const getData = async() =>{
+      const { data } = await axios.get("/api/news", { 
+        params: {
+          q: "clima",
+          gl: "co"
+      } })
+
+      setData(JSON.stringify(data));
+    }
+    
+    getData()
+  },[])
 
   const handleSearch = async() =>{
     if(!searchValue) return;
@@ -129,9 +146,12 @@ const Home: NextPage = () => {
       
       { Object.keys(currentCity).length !== 0 &&
         <CityContainer>
-          <MainInfo city={currentCity}/>
+          <NewsContainer>
+            {data}
+          </NewsContainer>
           
           <AllInfoContainer>
+            <MainInfo city={currentCity}/>
             <Uv city={currentCity}/>
             <Wind city={currentCity}/>
             <Sun city={currentCity}/>

@@ -24,7 +24,7 @@ export const CityContainer = styled.div`
 `
 
 export const MainInfoContainer = styled.div`
-  width: 60rem;
+  width: 100%;
   height: calc(85vh - 3.2rem);
   max-height: 780px;
   display: flex;
@@ -32,6 +32,7 @@ export const MainInfoContainer = styled.div`
   padding: 1.4rem;
   background: #D6D6D6;
   border-radius: 0.6rem;
+  grid-column: span 2;
 
   .main-info-container{
     display: flex;
