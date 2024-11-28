@@ -117,7 +117,7 @@ export const MainInfoContainer = styled.div`
 `
 
 export const AllInfoContainer = styled.div`
-  width: 100%;
+  width: 200%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1.4rem;
