@@ -5,7 +5,7 @@ import { NewsContainer, ImageContainer, TitleContainer, ContentContainer } from 
 interface News {
     title: string;
     link: string;
-    thumbnail: string;
+    thumbnail?: string;
 }
 
 export const NewsItem: React.FC<{ news: News }> = ({ news }) => {
@@ -13,13 +13,13 @@ export const NewsItem: React.FC<{ news: News }> = ({ news }) => {
         <NewsContainer>
             <ContentContainer>
                 <ImageContainer>
-                    <Image
+                    {news.thumbnail && <Image
                         src={news.thumbnail} 
                         alt={news.title}
                         objectFit="cover" 
                         width={50} 
                         height={50} 
-                    />
+                    />}
                 </ImageContainer>
                 <TitleContainer>
                     <a className='title-font' href={news.link}>{news.title}</a>
