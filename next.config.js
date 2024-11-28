@@ -6,7 +6,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ['flagsapi.com', 'openweathermap.org'],
+    domains: ['flagsapi.com', 'openweathermap.org', 'news.google.com'],
     dangerouslyAllowSVG: true,
   },
 }
