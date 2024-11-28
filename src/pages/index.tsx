@@ -61,27 +61,52 @@ const Home: NextPage = () => {
 
   })
 
-  useEffect(()=>{
-    const getData = async() =>{
-      const { data } = await axios.get("/api/news", { 
-        params: {
-          q: "clima",
-          gl: "co"
-      } })
+  useEffect(() => {
+    const fetchTranslation = async () => {
+      const country = currentCity.sys?.country;
+      console.log(country);
+      const locale = new Intl.Locale('und', { region: country });
+      const maximizedLocale = locale.maximize();
+      console.log(maximizedLocale.language);
 
-      
+      const translationResponse = await axios.get("/api/translation", {
+        params: {
+          language: maximizedLocale.language,
+        }
+      });
+
+      const translation = translationResponse.data.translations[0].translated[0];
+      console.log(translation);
+
+      return translation;
+    };
+
+    const fetchNews = async (translation) => {
+      const country = currentCity.sys?.country;
+      const { data } = await axios.get("/api/news", {
+        params: {
+          q: translation,
+          gl: country,
+        }
+      });
+
       const newsResults = data.news_results.map(result => ({
         title: result.title,
         link: result.link,
-        thumbnail: result.thumbnail_small
-      })).slice(0, 20); // Limit to first 10 news
+        thumbnail: result.thumbnail_small || 'https://w7.pngwing.com/pngs/546/46/png-transparent-weather-forecasting-severe-weather-storm-weather-free-text-heart-logo-thumbnail.png'
+      })).slice(0, 20);
 
       setData(JSON.stringify(newsResults));
       console.log(newsResults);
-    }
-    
-    getData()
-  },[])
+    };
+
+    const getData = async () => {
+      const translation = await fetchTranslation();
+      await fetchNews(translation);
+    };
+
+    getData();
+  }, [currentCity]);
 
   const handleSearch = async() =>{
     if(!searchValue) return;
