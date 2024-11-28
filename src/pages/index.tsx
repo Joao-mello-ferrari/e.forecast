@@ -24,7 +24,10 @@ import { BaseCity } from '../interfaces/baseCity'
 import { City } from '../interfaces/city'
 import { MainInfo } from '../components/MainInfo';
 import { DefaultText } from '../components/DefaultText';
-import { NewsContainer } from '../styledComponents/news';
+
+import { NewsContainer } from '../styledComponents/news'; // Added import for NewsContainer
+import { NewsItem } from '../components/News'; // Added import for News component
+
 import axios from 'axios';
 
 interface A extends HTMLDivElement{
@@ -66,7 +69,15 @@ const Home: NextPage = () => {
           gl: "co"
       } })
 
-      setData(JSON.stringify(data));
+      
+      const newsResults = data.news_results.map(result => ({
+        title: result.title,
+        link: result.link,
+        thumbnail: result.thumbnail_small
+      })).slice(0, 20); // Limit to first 10 news
+
+      setData(JSON.stringify(newsResults));
+      console.log(newsResults);
     }
     
     getData()
@@ -147,7 +158,9 @@ const Home: NextPage = () => {
       { Object.keys(currentCity).length !== 0 &&
         <CityContainer>
           <NewsContainer>
-            {data}
+            {JSON.parse(data).map((news: any, index: number) => (
+              <NewsItem key={index} news={news} />
+            ))}
           </NewsContainer>
           
           <AllInfoContainer>
