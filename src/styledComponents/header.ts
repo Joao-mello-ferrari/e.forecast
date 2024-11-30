@@ -3,8 +3,9 @@ import styled from 'styled-components'
 export const Header = styled.header`
   background: #BECAEA;
   width: 100vw;
-  max-width: 1440px;
+  max-width: 2120px;
   height: 15vh;
+  max-height: 150px;
   color: white;
   display: flex;
   border-radius: 0 0 0.6rem 0.6rem;

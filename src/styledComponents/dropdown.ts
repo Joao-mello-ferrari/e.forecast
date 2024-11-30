@@ -22,7 +22,7 @@ export const DropDownContainer = styled.div<DropdownProps>`
   padding: 1.4rem;
   position: absolute;
   top: 10vh;
-  left: 30%;
+  left: calc(50% - min(20vw, 288px));
 
   overflow-y: auto;
 

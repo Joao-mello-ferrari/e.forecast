@@ -13,8 +13,7 @@ interface RainProps{
 }
 
 export const CityContainer = styled.div`
-  width: 100vw;
-  max-width: 1440px;
+  width: 100%;
   display: flex;
   padding: 1.6rem;
 
@@ -24,7 +23,7 @@ export const CityContainer = styled.div`
 `
 
 export const MainInfoContainer = styled.div`
-  width: 60rem;
+  width: 100%;
   height: calc(85vh - 3.2rem);
   max-height: 780px;
   display: flex;
@@ -32,6 +31,7 @@ export const MainInfoContainer = styled.div`
   padding: 1.4rem;
   background: #D6D6D6;
   border-radius: 0.6rem;
+  grid-column: span 2;
 
   .main-info-container{
     display: flex;
@@ -116,12 +116,10 @@ export const MainInfoContainer = styled.div`
 `
 
 export const AllInfoContainer = styled.div`
-  width: 100%;
+  width: 200%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1.4rem;
-  height: calc(85vh - 3.2rem);
-  max-height: 780px;
   overflow: auto;
   margin-left: 1.6rem;
   padding-right: 0.4rem;

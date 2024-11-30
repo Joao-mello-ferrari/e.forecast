@@ -5,8 +5,8 @@ export const Default = styled.button`
   height: 40vh;
   
   position: absolute;
-  top: 40vh;
-  left: 20vw;
+  top: calc(50% - 20vh);
+  left: calc(50% - 30vw);
 
   background: #E9EFFD;
   border: 0;

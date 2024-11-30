@@ -25,6 +25,11 @@ import { City } from '../interfaces/city'
 import { MainInfo } from '../components/MainInfo';
 import { DefaultText } from '../components/DefaultText';
 
+import { AllNewsContainer, NewsContainer } from '../styledComponents/news'; // Added import for NewsContainer
+import { NewsItem } from '../components/News'; // Added import for News component
+
+import axios from 'axios';
+
 interface A extends HTMLDivElement{
   contains: (target: EventTarget | null) => boolean
 }
@@ -37,6 +42,7 @@ const Home: NextPage = () => {
   const [isSubmiting, setIsSubmiting] = useState(false);
 
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const [news, setNews] = useState([]);
 
   const dropdownRef = useRef<A>(null);
 
@@ -54,6 +60,53 @@ const Home: NextPage = () => {
     }
 
   })
+
+  useEffect(() => {
+    const fetchTranslation = async () => {
+      const country = currentCity.sys?.country;
+      console.log(country);
+      const locale = new Intl.Locale('und', { region: country });
+      const maximizedLocale = locale.maximize();
+      console.log(maximizedLocale.language);
+
+      const translationResponse = await axios.get("/api/translation", {
+        params: {
+          language: maximizedLocale.language,
+        }
+      });
+
+      const translation = translationResponse.data.translations[0].translated[0];
+      console.log(translation);
+
+      return translation;
+    };
+
+    const fetchNews = async (translation) => {
+      const country = currentCity.sys?.country;
+      const { data } = await axios.get("/api/news", {
+        params: {
+          q: translation,
+          gl: country,
+        }
+      });
+
+      const newsResults = data.news_results.map(result => ({
+        title: result.title,
+        link: result.link,
+        thumbnail: result.thumbnail_small || 'https://w7.pngwing.com/pngs/546/46/png-transparent-weather-forecasting-severe-weather-storm-weather-free-text-heart-logo-thumbnail.png'
+      })).slice(0, 20);
+
+      setNews(newsResults);
+      console.log(newsResults);
+    };
+
+    const getData = async () => {
+      const translation = await fetchTranslation();
+      await fetchNews(translation);
+    };
+
+    getData();
+  }, [currentCity]);
 
   const handleSearch = async() =>{
     if(!searchValue) return;
@@ -129,9 +182,14 @@ const Home: NextPage = () => {
       
       { Object.keys(currentCity).length !== 0 &&
         <CityContainer>
-          <MainInfo city={currentCity}/>
+          <AllNewsContainer>
+            {news.map((news: any, index: number) => (
+              <NewsItem key={index} news={news} />
+            ))}
+          </AllNewsContainer>
           
           <AllInfoContainer>
+            <MainInfo city={currentCity}/>
             <Uv city={currentCity}/>
             <Wind city={currentCity}/>
             <Sun city={currentCity}/>
