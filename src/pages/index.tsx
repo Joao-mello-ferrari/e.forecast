@@ -25,7 +25,7 @@ import { City } from '../interfaces/city'
 import { MainInfo } from '../components/MainInfo';
 import { DefaultText } from '../components/DefaultText';
 
-import { NewsContainer } from '../styledComponents/news'; // Added import for NewsContainer
+import { AllNewsContainer, NewsContainer } from '../styledComponents/news'; // Added import for NewsContainer
 import { NewsItem } from '../components/News'; // Added import for News component
 
 import axios from 'axios';
@@ -42,7 +42,7 @@ const Home: NextPage = () => {
   const [isSubmiting, setIsSubmiting] = useState(false);
 
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-  const [data, setData] = useState("");
+  const [news, setNews] = useState([]);
 
   const dropdownRef = useRef<A>(null);
 
@@ -96,7 +96,7 @@ const Home: NextPage = () => {
         thumbnail: result.thumbnail_small || 'https://w7.pngwing.com/pngs/546/46/png-transparent-weather-forecasting-severe-weather-storm-weather-free-text-heart-logo-thumbnail.png'
       })).slice(0, 20);
 
-      setData(JSON.stringify(newsResults));
+      setNews(newsResults);
       console.log(newsResults);
     };
 
@@ -182,11 +182,11 @@ const Home: NextPage = () => {
       
       { Object.keys(currentCity).length !== 0 &&
         <CityContainer>
-          <NewsContainer>
-            {JSON.parse(data).map((news: any, index: number) => (
+          <AllNewsContainer>
+            {news.map((news: any, index: number) => (
               <NewsItem key={index} news={news} />
             ))}
-          </NewsContainer>
+          </AllNewsContainer>
           
           <AllInfoContainer>
             <MainInfo city={currentCity}/>

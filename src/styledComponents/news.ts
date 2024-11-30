@@ -1,10 +1,19 @@
 import styled from 'styled-components'
 
+export const AllNewsContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0,0,20,0.6);
+    padding: 1rem;
+    border-radius: 0.6rem;
+    gap: 1rem;
+`;
+
 export const NewsContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 10px;
 `;
 
 export const ContentContainer = styled.div`
