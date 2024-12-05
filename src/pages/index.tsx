@@ -93,7 +93,7 @@ const Home: NextPage = () => {
       const newsResults = data.news_results.map(result => ({
         title: result.title,
         link: result.link,
-        thumbnail: result.thumbnail_small || 'https://w7.pngwing.com/pngs/546/46/png-transparent-weather-forecasting-severe-weather-storm-weather-free-text-heart-logo-thumbnail.png'
+        thumbnail: result.thumbnail_small || '/default_icon.png'
       })).slice(0, 20);
 
       setNews(newsResults);

@@ -96,6 +96,7 @@ export const MainInfoContainer = styled.div`
 
   @media(max-width: 768px){
     width: 100%;
+    grid-column: span 1;
 
     .main-info-container{
       height: 8rem;
@@ -132,6 +133,7 @@ export const AllInfoContainer = styled.div`
     height: auto!important;
     max-height: unset;
     padding-right: 0;
+    width: 100%;
   }
 
   .base{
