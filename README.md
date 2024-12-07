@@ -8,7 +8,11 @@ Therefore, i came to the conclusion that i would learn a lot during the project 
 > 
 > To get each country's flag, the [Country flags api](https://www.flagsapi.com/) has been used.
 > 
-> And last, but not least, the [Google maps embed api](https://developers.google.com/maps/documentation/embed/get-started) so the city map could be shown.
+> The [Google maps embed api](https://developers.google.com/maps/documentation/embed/get-started) so the city map could be shown.
+> 
+> The [Serper api](https://serper.dev) to fetch news
+>
+> And last, the [Lecto AI](https://lecto.ai) to perform translations
 
 # Check the project for yourself!
 **Youtube video** > https://www.youtube.com/watch?v=y34j8Q164hg<br />
