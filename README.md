@@ -30,10 +30,11 @@ With simples steps, it will be able to run everything locally.
 
 
 ```git
+   // USING Node.js V20 or higher
    git clone https://github.com/Joao-mello-ferrari/e.forecast.git
    cd e.forecast
-   yarn (or npm)
-   yarn dev (or npm dev)
+   npm i
+   npm run dev
 ```
 Finally, a .env file must be filled with some api keys ⬇
 * The google maps api needs you to create a project and a secret api key, so the maps fetching will be possible.
