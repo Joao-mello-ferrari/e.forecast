@@ -1,3 +1,7 @@
+// This file defines a styled button component that serves as a default/empty state display
+// It creates a centered container with a light blue background and responsive sizing
+// Contains title and text elements styled in dark blue for showing default messages or empty states
+
 import styled from 'styled-components'
 
 export const Default = styled.button`

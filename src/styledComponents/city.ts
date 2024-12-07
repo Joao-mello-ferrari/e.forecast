@@ -1,3 +1,14 @@
+// This file contains styled components for displaying weather information in a city view
+// It includes components for displaying:
+// - Main city container and layout
+// - UV index with gradient visualization
+// - Wind direction with compass visualization
+// - Sun rise/set times
+// - Pressure gauge
+// - Rain volume indicator
+// - Visibility, feels like temperature, and humidity displays
+// Each component is styled using styled-components and accepts specific props for dynamic rendering
+
 import styled from 'styled-components'
 
 interface UviProps{

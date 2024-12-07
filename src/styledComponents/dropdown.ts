@@ -1,3 +1,11 @@
+// This file defines styled components for a dropdown menu used in city/location selection
+// It includes:
+// - A container component that handles dropdown visibility and animations
+// - Item components for displaying city/location options with images and info
+// - Responsive styling for mobile devices
+// - Custom scrollbar styling
+// - Hover effects and transitions
+
 import styled from 'styled-components'
 
 interface DropdownProps{

@@ -1,3 +1,13 @@
+/**
+ * This file contains styled components for displaying news items in the application.
+ * It includes components for:
+ * - Main news container with semi-transparent background
+ * - Individual news item containers
+ * - Content layout with image and title
+ * - Image container with fixed dimensions
+ * - Title container with hover effects
+ */
+
 import styled from 'styled-components'
 
 export const AllNewsContainer = styled.div`

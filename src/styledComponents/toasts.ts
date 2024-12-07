@@ -1,3 +1,14 @@
+/**
+ * This file contains styled components for toast notifications in the application.
+ * It includes:
+ * - A container component that manages the positioning and overflow of multiple toasts
+ * - Individual toast components with:
+ *   - Slide in/out animations
+ *   - Flexible content layout
+ *   - Hover effects for close button
+ *   - Consistent spacing and typography
+ */
+
 import styled from 'styled-components'
 
 export const ToastsContainer = styled.div`

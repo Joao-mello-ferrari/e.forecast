@@ -1,14 +1,16 @@
+// This is the main page of a weather forecast application that displays weather information and related news for searched cities.
+// It includes features like city search, weather details display, and news fetching based on the city's location.
+
 import { useState, useEffect, useRef } from 'react';
 import type { NextPage } from 'next'
 import Head from 'next/head';
 
 import { MainContainer } from '../styledComponents/main'
-
 import { AllInfoContainer, CityContainer } from '../styledComponents/city'
-
 import { api } from '../services/api'
 import { useToast } from '../context/toastContext'
 
+// Import all weather information components
 import { Header } from '../components/Header';
 import { Dropdown } from '../components/Dropdown';
 import { Uv } from '../components/Uv';
@@ -25,8 +27,8 @@ import { City } from '../interfaces/city'
 import { MainInfo } from '../components/MainInfo';
 import { DefaultText } from '../components/DefaultText';
 
-import { AllNewsContainer, NewsContainer } from '../styledComponents/news'; // Added import for NewsContainer
-import { NewsItem } from '../components/News'; // Added import for News component
+import { AllNewsContainer, NewsContainer } from '../styledComponents/news';
+import { NewsItem } from '../components/News';
 
 import axios from 'axios';
 
@@ -35,19 +37,18 @@ interface A extends HTMLDivElement{
 }
 
 const Home: NextPage = () => {
+  // State management for city data and UI controls
   const [currentCity, setCurrentCity] = useState<City>({} as City);
   const [cities, setCities] = useState<BaseCity[]>([]);
-
   const [searchValue, setSearchValue] = useState('');
   const [isSubmiting, setIsSubmiting] = useState(false);
-
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const [news, setNews] = useState([]);
 
   const dropdownRef = useRef<A>(null);
-
   const { addToast } = useToast();
 
+  // Handle click outside dropdown to close it
   useEffect(()=>{
     function checkIfClicked(e: MouseEvent){
       if(!dropdownRef.current) return;
@@ -58,9 +59,9 @@ const Home: NextPage = () => {
     return ()=>{
       document.removeEventListener('mousedown', checkIfClicked);
     }
-
   })
 
+  // Fetch news based on city's country and language
   useEffect(() => {
     const fetchTranslation = async () => {
       const country = currentCity.sys?.country;
@@ -108,6 +109,7 @@ const Home: NextPage = () => {
     getData();
   }, [currentCity]);
 
+  // Handle city search functionality
   const handleSearch = async() =>{
     if(!searchValue) return;
 
@@ -130,13 +132,13 @@ const Home: NextPage = () => {
     }
   }
 
+  // Fetch detailed weather information for selected city
   const fetchCity = async(city: BaseCity) =>{
     const { lat, lon } = city;
 
     try{
       setIsSubmiting(true);
       
-      //const response = await api.get(`/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&units=metric&appid=${process.env.NEXT_PUBLIC_ONE_CALL_API_KEY}`);
       const response = await api.get(`/data/2.5/weather?lat=${lat}&lon=${lon}&exclude={part}&units=metric&appid=${process.env.NEXT_PUBLIC_ONE_CALL_API_KEY}`);
       if(response.data.length === 0) throw new Error("Could not find city data.");
       
@@ -155,6 +157,7 @@ const Home: NextPage = () => {
     }
   }
   
+  // Render the main application UI
   return (
     <MainContainer>
       <Head>
@@ -175,11 +178,13 @@ const Home: NextPage = () => {
         isVisible={cities.length !== 0 && isDropDownOpen}
       />
       
+      {/* Show default text when no city is selected */}
       { Object.keys(currentCity).length === 0 &&  
         !(cities.length !== 0 && isDropDownOpen) &&
         <DefaultText/> 
       }
       
+      {/* Display weather information and news when a city is selected */}
       { Object.keys(currentCity).length !== 0 &&
         <CityContainer>
           <AllNewsContainer>

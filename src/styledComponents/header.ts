@@ -1,3 +1,12 @@
+/**
+ * This file contains styled components for the header section of the application.
+ * It includes styles for:
+ * - Main header container
+ * - Logo text with gradient
+ * - Search input field with label
+ * - Icon and loader containers
+ */
+
 import styled from 'styled-components'
 
 export const Header = styled.header`
